@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Table, { TableHeader, TableBody } from "./Table";
-import Simple from "./Simple";
+import { TableHeader, TableBody } from "./Table";
 
 class App extends Component {
-  render() {
-    const characters = [
+  state = {
+    characters: [
       {
         name: "Charlie",
         job: "Janitor"
@@ -21,16 +20,28 @@ class App extends Component {
         name: "Dennis",
         job: "Bartender"
       }
-    ];
+    ]
+  };
 
+  removeCharacter = (index) => {
+    const { characters } = this.state;
+    this.setState({
+      characters: characters.filter((character, i) => {
+        return i !== index;
+      })
+    });
+  };
+
+  render() {
     return (
       <div className="App">
-        {/* <Simple />
-        <Table characterData={characters} /> */}
-        <table>
+        <div className="container">
           <TableHeader />
-          <TableBody characterData={characters} />
-        </table>
+          <TableBody
+            characterData={this.state.characters}
+            removeCharacter={this.removeCharacter}
+          />
+        </div>
       </div>
     );
   }

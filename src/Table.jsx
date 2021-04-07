@@ -17,6 +17,9 @@ export const TableBody = (props) => {
       <tr key={index}>
         <td>{row.name}</td>
         <td>{row.job}</td>
+        <td>
+          <button onClick={() => props.removeCharacter(index)}>Remove</button>
+        </td>
       </tr>
     );
   });
